@@ -1,0 +1,39 @@
+<div class="container">
+    <h1>Update User</h1>
+  
+    <a href="#" routerLink="/home" class="btn btn-primary">Back</a>
+        
+    <form [formGroup]="form" (ngSubmit)="submit()">
+  
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input 
+                formControlName="email"
+                id="email" 
+                type="email" 
+                [(ngModel)]="user.email"
+                class="form-control">
+            <div *ngIf="f.email.touched && f.email.invalid" class="alert alert-danger">
+                <div *ngIf="f.email.errors?.required">Email is required.</div>
+                <div *ngIf="f.email.errors?.email">Email is not valid</div>
+            </div>
+        </div>
+         
+        <div class="form-group">
+            <label for="first_name">First Name</label>
+            <input 
+                formControlName="first_name"
+                id="first_name" 
+                type="text" 
+                [(ngModel)]="user.first_name"
+                class="form-control">
+            
+            <div *ngIf="f.first_name.touched && f.first_name.invalid" class="alert alert-danger">
+                <div *ngIf="f.first_name.errors?.required">First Name is required.</div>
+            </div>
+        </div>
+
+        
+        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Update</button>
+    </form>
+</div>

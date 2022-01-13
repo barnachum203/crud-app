@@ -1,0 +1,16 @@
+<div class="container" *ngIf="currentUser">
+  <header class="jumbotron">
+    <h3>
+      <strong>{{ currentUser.first_name }} {{ currentUser.last_name }}</strong>
+      Profile
+    </h3>
+  </header>
+  <p>
+    <strong>Token:</strong>
+    {{ token }}
+  </p>
+  <p>
+    <strong>Email:</strong>
+    {{ currentUser.email }}
+  </p>
+</div>

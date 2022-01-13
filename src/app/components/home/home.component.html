@@ -1,0 +1,46 @@
+<div class="container">
+  <h1>Angular 12 CRUD Users</h1>
+  <div class="row">
+    <div class="col-12"></div>
+  </div>
+
+  <!-- <a href="#" routerLink="/post/create/" class="btn btn-success">Create New Post</a> -->
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>_id</th>
+        <th>email</th>
+        <th>first_name</th>
+        <th width="250px">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user._id }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.first_name }}</td>
+        <td>
+          <a
+            type="button"
+            class="btn btn-info"
+            [routerLink]="['/profile/', user._id, 'view']"
+            >View</a
+          >
+          <a
+            type="button"
+            class="btn btn-primary"
+            [routerLink]="['/profile/', user._id, 'edit']"
+            >Edit</a
+          >
+          <a
+            type="button"
+            class="btn btn-danger"
+            (click)="deleteUser(user._id.toString())"
+            >Delete</a
+          >
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
