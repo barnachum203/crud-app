@@ -1,11 +1,10 @@
-// import { Response, Request, NextFunction } from "express";
 const User = require("../model/User");
 const jwt = require("jsonwebtoken");
-const dal = require("../api/user/dalUser");
+const dal = require("../api/dal/dalUser");
 
-/**Check if user have an authorized token
+/**
+ * Check if user have an authorized token
  * @augments x-auth-token should be in request header.
- * @argument user
  */
 const requireUser = async (req, res, next) => {
   const token = req.header("x-auth-token");

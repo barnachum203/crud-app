@@ -49,16 +49,21 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
-const joiValidate = (obj) => {
+const registerJoi = (obj) => {
   var schema = Joi.object({
-    password: Joi.string()
-      .min(3)
-      .max(30)
-      .required(),
+    password: Joi.string().min(3).max(30).required(),
     email: Joi.string().email().required(),
     first_name: Joi.string().required(),
-    last_name: Joi.string(), 
+    last_name: Joi.string(),
     created: Joi.date(),
+  });
+  return schema.validate(obj);
+};
+
+const loginJoi = (obj) => {
+  var schema = Joi.object({
+    password: Joi.string().min(3).max(30).required(),
+    email: Joi.string().email().required(),
   });
   return schema.validate(obj);
 };
@@ -66,5 +71,6 @@ const User = mongoose.model("User", userSchema);
 
 module.exports = {
   User,
-  joiValidate,
+  registerJoi,
+  loginJoi,
 };

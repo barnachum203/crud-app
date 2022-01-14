@@ -6,7 +6,7 @@ let express = require("express"),
 require("dotenv").config({ path: "./environment.env" });
 require("./database/db").connect();
 
-const userRouter = require("./api/user/user.routes");
+const userRouter = require("./api/routes/user.routes");
 const coockieParser = require('cookie-parser');
 
 const app = express();
