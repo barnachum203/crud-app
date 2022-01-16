@@ -27,7 +27,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
-      this.username = this.tokenStorage.getUser().first_name;
+      this.username = this.tokenStorage.getUser()!.first_name.toString();
     }
   }
 

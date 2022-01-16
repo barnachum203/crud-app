@@ -13,7 +13,9 @@ export class ProfileComponent implements OnInit {
   constructor(private tokenStorage: TokenStorageService) {}
 
   ngOnInit(): void {
-    this.token = this.tokenStorage.getToken();
-    this.currentUser = this.tokenStorage.getUser();
+    if(this.tokenStorage.getToken()){
+      this.token = this.tokenStorage.getToken();
+      this.currentUser = this.tokenStorage.getUser();  
+    }
   }
 }

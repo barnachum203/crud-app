@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
-      this.username = this.tokenStorage.getUser().first_name;
+      this.username = this.tokenStorage.getUser()!.first_name.toString();
     }
   }
 
@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        this.username = this.tokenStorage.getUser().first_name;
+        this.username = this.tokenStorage.getUser()!.first_name.toString();
         if (this.username) {
           this.reloadPage();
         }

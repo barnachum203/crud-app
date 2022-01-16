@@ -17,9 +17,9 @@ export class AppComponent {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
 
     if (this.isLoggedIn) {
-      const user = this.tokenStorageService.getUser();
+      const user = this.tokenStorageService.getUser()!;
 
-      this.username = user.email;
+      this.username = user.email.toString();
     } else {
       console.log('please login first');
     }
