@@ -1,6 +1,6 @@
 const User = require("../model/User");
 const jwt = require("jsonwebtoken");
-const dal = require("../api/dal/dalUser");
+const dal = require("../dal/dalUser");
 
 /**
  * Check if user have an authorized token

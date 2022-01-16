@@ -4,9 +4,9 @@ let express = require("express"),
   bodyParser = require("body-parser");
 
 require("dotenv").config({ path: "./environment.env" });
-require("./database/db").connect();
+require("./db").connect();
 
-const userRouter = require("./api/routes/user.routes");
+const userRouter = require("./routes/user.routes");
 const coockieParser = require('cookie-parser');
 
 const app = express();
