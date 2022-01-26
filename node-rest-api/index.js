@@ -7,12 +7,12 @@ require("dotenv").config({ path: "./environment.env" });
 require("./db").connect();
 
 const userRouter = require("./routes/user.routes");
-const coockieParser = require('cookie-parser');
+const petRouter = require("./routes/pet.routes");
+const { string } = require("joi");
 
 const app = express();
 app.use(bodyParser.json());
 app.use(express.json());
-app.use(coockieParser());
 app.use(
   bodyParser.urlencoded({
     extended: false,
@@ -20,14 +20,14 @@ app.use(
 );
 app.use(cors());
 
-
 // API root
 app.use("/api", userRouter);
+app.use("/api/pets", petRouter);
 
 // PORT
-const port = process.env.PORT || 8000;
+// const port: number = Number(process.env.PORT) || 8000;
+const port = process.env.PORT || "8000";
 
 app.listen(port, () => {
   console.log("Listening on port " + port);
 });
-
