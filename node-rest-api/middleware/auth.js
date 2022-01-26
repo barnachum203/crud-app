@@ -12,7 +12,7 @@ const requireUser = async (req, res, next) => {
   if (!token) {
     return res.status(401).json({ message: "User not authorized" });
   }
-  // console.log("token verified.");
+  console.log("token verified.");
 
   jwt.verify(token, process.env.TOKEN_SECRET, async (err, user) => {
     if (err) {
