@@ -1,6 +1,6 @@
 <div class="container">
   <h1>
-    View User <strong>{{ user.first_name }}</strong>
+    View Pet <strong>{{ pet.name }}</strong>
   </h1>
 
   <a href="#" routerLink="/home" class="btn btn-primary">Back</a>
@@ -8,9 +8,9 @@
   <p>
     <strong>Email:</strong>
     <input
-      id="email"
-      type="email"
-      [(ngModel)]="user.email"
+      id="type"
+      type="type"
+      [(ngModel)]="pet.type"
       disabled
       class="form-control"
     />
@@ -18,20 +18,20 @@
   <p>
     <strong>First Name:</strong>
     <input
-      id="first_name"
-      type="first_name"
-      [(ngModel)]="user.first_name"
+      id="name"
+      type="name"
+      [(ngModel)]="pet.name"
       disabled
       class="form-control"
     />
   </p>
 
   <p>
-    <strong>Password:</strong>
+    <strong>Age:</strong>
     <input
-      id="password"
-      type="password"
-      [(ngModel)]="user.password"
+      id="age"
+      type="age"
+      [(ngModel)]="pet.age"
       disabled
       class="form-control"
     />

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { User } from 'src/app/model/User';
-import { CrudService } from 'src/app/service/crud.service';
+import { Pet } from 'src/app/model/Pet';
+import { PetService } from 'src/app/service/pet.service';
 import { TokenStorageService } from 'src/app/service/token-storage.service';
 
 @Component({
@@ -11,20 +11,20 @@ import { TokenStorageService } from 'src/app/service/token-storage.service';
 })
 export class ViewComponent implements OnInit {
   id: string = '';
-  user!: User;
+  pet!: Pet;
 
   constructor(
-    public crudService: CrudService,
+    public petService: PetService,
     private storageService: TokenStorageService,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['profileId'];
-    this.user = this.storageService.getUserById(this.id.toString());
-    if (!this.user) {      
-      this.crudService.getUser(this.id).subscribe((data: User) => {
-        this.user = data;
+    this.pet = this.storageService.getPetById(this.id.toString());
+    if (!this.pet) {
+      this.petService.getPet(this.id).subscribe((data: Pet) => {
+        this.pet = data;
       });
     }
   }

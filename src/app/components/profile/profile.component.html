@@ -1,7 +1,7 @@
 <div class="container" *ngIf="currentUser">
   <header class="jumbotron">
     <h3>
-      <strong>{{ currentUser.first_name }} {{ currentUser.last_name }}</strong>
+      <strong>{{ currentUser.first_name }}</strong>
       Profile
     </h3>
   </header>
@@ -12,5 +12,9 @@
   <p>
     <strong>Email:</strong>
     {{ currentUser.email }}
+  </p>
+  <p>
+    <strong>Password:</strong>
+    {{ currentUser.password }}
   </p>
 </div>

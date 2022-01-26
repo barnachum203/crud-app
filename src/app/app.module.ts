@@ -9,8 +9,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
-import { ViewComponent } from './components/profile/view/view.component';
-import { EditComponent } from './components/profile/edit/edit.component';
+import { ViewComponent } from './components/view/view.component';
+import { EditComponent } from './components/edit/edit.component';
+import { CreatePetComponent } from './components/create-pet/create-pet.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { EditComponent } from './components/profile/edit/edit.component';
     ProfileComponent,
     RegisterComponent,
     ViewComponent,
-    EditComponent
+    EditComponent,
+    CreatePetComponent
   ],
   imports: [
     BrowserModule,

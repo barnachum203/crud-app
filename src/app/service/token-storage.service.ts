@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
+import { Pet } from '../model/Pet';
 import { User } from '../model/User';
 
 const TOKEN_KEY = 'x-auth-token';
 const USER_KEY = 'auth-user';
 const USER_LIST = 'user-list';
+const PETS_LIST = 'pets-list';
 
 @Injectable({
   providedIn: 'root',
@@ -37,44 +39,51 @@ export class TokenStorageService {
     return null;
   }
 
-  public deleteUser(id: string): void {
-    let users: User[] = this.getUsersList();
-    let index = users.findIndex((user) => user._id == id);
-    if (users[index]._id == this.getUser()!._id) {
+  public getPetsList(): Pet[] {
+    const pets = window.sessionStorage.getItem(PETS_LIST);
+    if (pets) {
+      return JSON.parse(pets);
+    }
+    return [];
+  }
+  public deletePet(id: string): void {
+    let pets: Pet[] = this.getPetsList();
+    let index = pets.findIndex((pet) => pet._id == id);
+    if (pets[index]._id == this.getPet()!._id) {
       this.signOut();
     }
 
     if (index > -1) {
-      users.splice(index, 1);
+      pets.splice(index, 1);
     }
 
-    this.saveUsersList(users);
+    this.savePetsList(pets);
   }
-
-  public saveUsersList(users: User[]): void {
-    window.sessionStorage.removeItem(USER_LIST);
-    window.sessionStorage.setItem(USER_LIST, JSON.stringify(users));
+  public savePetsList(pets: Pet[]): void {
+    window.sessionStorage.removeItem(PETS_LIST);
+    window.sessionStorage.setItem(PETS_LIST, JSON.stringify(pets));
   }
-
-  public getUsersList(): User[] {
-    const users = window.sessionStorage.getItem(USER_LIST);
-    if (users) {
-      return JSON.parse(users);
+  public getPet(): User | null {
+    const pet = window.sessionStorage.getItem(PETS_LIST);
+    if (pet) {
+      return JSON.parse(pet);
     }
-    return [];
+    return null;
   }
-
-  getUserById(id: string): User {
-    return this.getUsersList().find((user) => user._id == id)!;
-  }
-
-  updateUserById(id: string, userToUpdate: User): void {
-    let users: User[] = this.getUsersList();
-    let index = users.findIndex((user) => user._id == id);
-    if (users[index]._id == this.getUser()!._id) {
-      this.saveUser(userToUpdate);
+  updatePetById(id: string, petToUpdate: Pet): void {
+    let pets: Pet[] = this.getPetsList();
+    let index = pets.findIndex((pet) => pet._id == id);
+    if (pets[index]._id == this.getPet()!._id) {
+      this.savePet(petToUpdate);
     }
-    users[index] = userToUpdate;
-    this.saveUsersList(users);
+    pets[index] = petToUpdate;
+    this.savePetsList(pets);
+  }
+  public savePet(pet: Pet): void {
+    window.sessionStorage.removeItem(PETS_LIST);
+    window.sessionStorage.setItem(PETS_LIST, JSON.stringify(pet));
+  }
+  getPetById(id: string): Pet {
+    return this.getPetsList().find((pet) => pet._id == id)!;
   }
 }
